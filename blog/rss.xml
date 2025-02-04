@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>正规游戏 Blog</title>
+        <link>https://ldoubil.github.io/blog</link>
+        <description>正规游戏 Blog</description>
+        <lastBuildDate>Tue, 04 Feb 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh-Hans</language>
+        <item>
+            <title><![CDATA[哦你发现我了]]></title>
+            <link>https://ldoubil.github.io/blog/哦你发现我了</link>
+            <guid>https://ldoubil.github.io/blog/哦你发现我了</guid>
+            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[img]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=ldoubil&amp;theme=algolia" alt="img" class="img_ev3q"></p>
+<blockquote>
+<p>这里将会写一些教程,当前现在还没有因为我还没有空呢!</p>
+</blockquote>]]></content:encoded>
+            <category>教程</category>
+        </item>
+    </channel>
+</rss>
