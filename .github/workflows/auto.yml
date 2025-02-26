@@ -6,7 +6,7 @@ on:
     types: [manual-trigger]
 
 jobs:
-  构建部署:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
