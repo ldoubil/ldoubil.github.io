@@ -4,19 +4,12 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [manual-trigger]
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      build-ready: ${{ steps.build-complete.outputs.ready }}
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          repository: ldoubil/astro_blog
-          token: ${{ secrets.GH_TOKEN }}
 
       - name: 安装 Node.js 和缓存配置
         uses: actions/setup-node@v4
@@ -25,9 +18,15 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: pnpm-lock.yaml
 
+      - name: 安装 pnpm
+        run: |
+          # 使用 corepack 安装 pnpm
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
       - name: 并行安装依赖
         run: pnpm install
-        continue-on-error: false
+
 
       - name: 并行构建项目
         id: build-complete
