@@ -3,6 +3,7 @@ name: 自动部署
 
 # 触发条件：当代码被推送到 main 分支时执行
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [manual-trigger]
 
@@ -39,7 +40,7 @@ jobs:
 
       # 步骤3：安装项目依赖
       - name: 安装项目依赖
-        run: npm ci  # 使用 npm ci 安装 package-lock.json 中锁定的依赖
+        run: pnpm install  # 使用 pnpm 安装依赖
 
       # 步骤4：构建 Astro 静态文件
       - name: 构建 Astro 静态文件
