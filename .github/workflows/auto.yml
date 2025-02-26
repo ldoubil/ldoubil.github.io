@@ -1,4 +1,4 @@
-name: 自动部署流程
+name: 自动部署 🚀
 
 on:
   workflow_dispatch:
@@ -6,60 +6,66 @@ on:
     types: [manual-trigger]
 
 jobs:
-  build:
+  build:  # 保留英文名
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
-      - name: 🛎️ 检出代码
-        uses: actions/checkout@v4
+      - name: 检出代码库 📥
+        uses: actions/checkout@v2
         with:
           repository: ldoubil/astro_blog
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: 🚀 配置Node环境
-        uses: actions/setup-node@v4
+      - name: 缓存 pnpm 🗄️
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: 设置 Node.js ⚙️
+        uses: actions/setup-node@v2
         with:
           node-version: '22'
-          cache: 'pnpm'
 
-      - name: 📦 启用并设置pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+      - name: 安装 pnpm 📦
+        run: npm install -g pnpm
 
-      - name: 📥 安装项目依赖
-        run: pnpm install --frozen-lockfile
+      - name: 安装项目依赖 📂
+        run: pnpm install
 
-      - name: 🏗️ 构建生产版本
-        run: pnpm run build
-        env:
-          NODE_ENV: production
+      - name: 构建 Astro 静态文件 🏗️
+        run: npm run build  # 构建产物会生成到 `dist` 目录
 
-      - name: 📝 配置CNAME
-        run: echo 'acg-n.cn' > dist/CNAME
+      - name: 检查构建目录 🔍
+        run: ls -la dist  # 确保 dist 目录存在
 
-      - name: 📦 打包构建产物
-        run: tar --use-compress-program 'pigz -9' -cf dist.tar.gz dist/
+      - name: 创建 CNAME 文件 📄
+        run: echo 'acg-n.cn' > dist/CNAME  # 确保写入到 dist 目录
 
-      - name: 🚚 上传产物存档
+      - name: 打包构建产物 📦
+        run: tar -czvf dist.tar.gz dist/  # 打包 dist 目录
+
+      - name: 发布打包文件 🚚
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifact
+          name: build
           path: dist.tar.gz
 
-      - name: ⚙️ 配置Git信息
+      - name: 配置 Git 用户信息 👤
         run: |
-          git config --global user.name '会做饭的二哈'
-          git config --global user.email 'baikaiwen12@outlook.com'
+          git config --global user.name 'ldoubil'
+          git config --global user.email 'baikaiwen12@outlook.com'  # 注意邮箱格式修正
 
-      - name: 🚀 强制部署到Pages
+      - name: 部署到 GitHub Pages 🌐
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          cd dist
-          git init -b blog
+          cd dist/  # 进入正确的构建目录
+          git init
           git add -A
-          git commit -m "自动化部署: $(date +'%Y-%m-%d %H:%M:%S')"
+          git commit -m "Create by workflows"
+          # 确保目标仓库和分支正确
           git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/ldoubil/ldoubil.github.io.git
-          git push -f origin blog
+          git push origin HEAD:blog -f  # 强制推送到 blog 分支
