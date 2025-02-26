@@ -38,6 +38,10 @@ jobs:
         with:
           node-version: '22'  # 使用 Node.js 18 版本
 
+      # 新增步骤：安装 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       # 步骤3：安装项目依赖
       - name: 安装项目依赖
         run: pnpm install  # 使用 pnpm 安装依赖
