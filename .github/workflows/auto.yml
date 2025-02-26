@@ -1,85 +1,67 @@
-# 工作流名称：将 Astro 部署到 GitHub Pages
 name: 自动部署
 
-# 触发条件：当代码被推送到 main 分支时执行
 on:
   workflow_dispatch:
   repository_dispatch:
     types: [manual-trigger]
 
-# 定义工作流程中的任务
 jobs:
-  # 构建任务
   build:
-    # 指定运行环境为最新版本的 Ubuntu
     runs-on: ubuntu-latest
-
-    # 定义任务的具体步骤
+    outputs:
+      build-ready: ${{ steps.build-complete.outputs.ready }}
+    
     steps:
-      # 步骤1：检出代码仓库
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ldoubil/astro_blog
           token: ${{ secrets.GH_TOKEN }}
 
-      # 新增步骤：缓存 node_modules
-      - name: Cache node_modules
-        uses: actions/cache@v2
+      - name: 安装 Node.js 和缓存配置
+        uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
 
-      # 步骤2：设置 Node.js 环境
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '22'  # 使用 Node.js 18 版本
+      - name: 并行安装依赖
+        run: pnpm install
+        continue-on-error: false
 
-      # 新增步骤：安装 pnpm
-      - name: Install pnpm
-        run: npm install -g pnpm
+      - name: 并行构建项目
+        id: build-complete
+        run: |
+          pnpm run build
+          echo 'acg-n.cn' > build/CNAME
+          echo "ready=$(date +%s)" >> $GITHUB_OUTPUT
 
-      # 步骤3：安装项目依赖
-      - name: 安装项目依赖
-        run: pnpm install  # 使用 pnpm 安装依赖
-
-      # 步骤4：构建 Astro 静态文件
-      - name: 构建 Astro 静态文件
-        run: npm run build  # 运行构建命令生成静态文件
-
-      # 新增步骤：创建 CNAME 文件
-      - name: Create CNAME file
-        run: echo 'acg-n.cn' > build/CNAME  # 将自定义域名写入 CNAME 文件
-    
-    
-        # 新增步骤：将 build 打包
-      - name: 打包 build
-        run: tar -czvf build.tar.gz build/  # 将 build 文件夹打包为 build.tar.gz
-
-        # 新增步骤：发布打包文件
-      - name: 发布打包文件
+      - name: 上传构建产物
         uses: actions/upload-artifact@v4
         with:
-            name: build
-            path: build.tar.gz
+          name: build-artifacts
+          path: |
+            build/
+            !build/**/*.map
 
-      # 步骤5：配置 Git 用户信息
-      - name: 配置 Git 用户信息
-        run: |
-          git config --global user.name '会做饭的二哈'  # 设置 Git 用户名
-          git config --global user.email '会做饭的二哈@baikaiwen12@outlook.com'  # 设置 Git 邮箱
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: github-pages
+    
+    steps:
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: build
 
-      # 步骤6：部署到 GitHub Pages
-      - name: 部署到 GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # 使用 GitHub 密钥进行身份验证
-        run: |
-          cd build/  # 进入生成的静态文件目录
-          git init  # 初始化 Git 仓库
-          git add -A  # 添加所有文件到暂存区
-          git commit -m "Create by workflows"  # 提交更改
-          git remote add origin https://${{ secrets.GH_TOKEN }}@github.com/ldoubil/ldoubil.github.io.git  # 添加远程仓库
-          git push origin HEAD:blog -f  # 强制推送到 main 分支
+      - name: 极速部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./build
+          repository: ldoubil/ldoubil.github.io
+          branch: blog
+          full_commit_message: "Deploy by GitHub Actions (build ${{ needs.build.outputs.build-ready }})"
+          force_orphan: true
