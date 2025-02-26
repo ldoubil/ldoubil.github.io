@@ -23,18 +23,10 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
-      - name: 📦 安装pnpm
-        run: npm install -g pnpm@latest
-
-      - name: 🔍 恢复依赖缓存
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.pnpm-store
-            node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+      - name: 📦 启用并设置pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: 📥 安装项目依赖
         run: pnpm install --frozen-lockfile
