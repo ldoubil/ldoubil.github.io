@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: 检出代码库 📥
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ldoubil/astro_blog
           token: ${{ secrets.GH_TOKEN }}
 
       - name: 缓存 pnpm 🗄️
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -25,21 +25,25 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - name: 设置 Node.js ⚙️
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '20'  # 使用稳定的 LTS 版本
 
       - name: 安装 pnpm 📦
-        run: npm install -g pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: 安装项目依赖 📂
         run: pnpm install
 
       - name: 构建 Astro 静态文件 🏗️
-        run: npm run build  # 构建产物会生成到 `dist` 目录
+        run: pnpm run build  # 使用 pnpm 构建
 
       - name: 检查构建目录 🔍
-        run: ls -la dist  # 确保 dist 目录存在
+        run: |
+          mkdir -p dist  # 确保 dist 目录存在
+          ls -la dist
 
       - name: 创建 CNAME 文件 📄
         run: echo 'acg-n.cn' > dist/CNAME  # 确保写入到 dist 目录
@@ -56,7 +60,7 @@ jobs:
       - name: 配置 Git 用户信息 👤
         run: |
           git config --global user.name 'ldoubil'
-          git config --global user.email 'baikaiwen12@outlook.com'  # 注意邮箱格式修正
+          git config --global user.email 'baikaiwen12@outlook.com'
 
       - name: 部署到 GitHub Pages 🌐
         env:
