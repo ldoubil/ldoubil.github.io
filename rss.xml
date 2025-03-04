@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>🎮百科</title><description>游戏百科</description><link>https://acg-n.cn/</link><language>zh_CN</language><item><title>MD语法</title><link>https://acg-n.cn/posts/md%E8%AF%AD%E6%B3%95/</link><guid isPermaLink="true">https://acg-n.cn/posts/md%E8%AF%AD%E6%B3%95/</guid><pubDate>Thu, 27 Feb 2025 21:00:03 GMT</pubDate><content:encoded>&lt;h2&gt;GitHub 卡片&lt;/h2&gt;
+&lt;p&gt;::github{repo=&quot;ldoubil/ldoubil&quot;}&lt;/p&gt;
+&lt;p&gt;:::note[自定义标题]
+note
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+tip
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+important
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+warning
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+caution
+:::&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!TIP]
+&lt;a href=&quot;https://acg-n.cn&quot;&gt;acg-n.cn&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item><item><title>组网教程</title><link>https://acg-n.cn/posts/%E7%BB%84%E7%BD%91%E6%95%99%E7%A8%8B/</link><guid isPermaLink="true">https://acg-n.cn/posts/%E7%BB%84%E7%BD%91%E6%95%99%E7%A8%8B/</guid><description>本教程将指导您如何构建和配置一个基本的网络。</description><pubDate>Thu, 27 Feb 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;使用 Radmin LAN 实现游戏联机教程&lt;/h1&gt;
+&lt;p&gt;Radmin LAN 提供简单免费的虚拟局域网搭建服务，尤其适合无法直连的玩家通过互联网实现「局域网联机」。以下是专为游戏场景优化的操作指南：&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;创建/加入游戏专用网络&lt;/h2&gt;
+&lt;h3&gt;▶ 房主操作：创建虚拟局域网&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;运行 Radmin LAN → 点击「创建网络」&lt;/li&gt;
+&lt;li&gt;设置网络名称（如 &lt;code&gt;Minecraft-Server&lt;/code&gt;）和密码&lt;br /&gt;
+✅ 建议密码包含数字+字母（例：&lt;code&gt;MC2023@Room&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;将网络名称和密码分享给其他玩家&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;▶ 玩家操作：加入虚拟局域网&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;所有玩家安装 Radmin LAN 后点击「加入网络」&lt;/li&gt;
+&lt;li&gt;输入房主提供的名称和密码 → 点击「加入」&lt;/li&gt;
+&lt;li&gt;验证连接：
+&lt;ul&gt;
+&lt;li&gt;在 Radmin LAN 界面右键房主昵称 → 选择「Ping」&lt;/li&gt;
+&lt;li&gt;延迟 ≤100ms 为理想状态，＞300ms 需检查网络&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;提示：如果出现「无法发现主机」，尝试禁用所有玩家的 IPv6 协议（控制面板→网络共享中心→适配器设置→取消勾选IPv6）后重启游戏。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content:encoded></item></channel></rss>

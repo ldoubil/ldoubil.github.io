@@ -1,0 +1,1 @@
+import{ae as o,af as n}from"../entry.CR1uukld.js";const e=(a,e)=>o.lang.round(n.parse(a)[e]);export{e as c};
