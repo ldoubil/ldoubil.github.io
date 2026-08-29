@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>未闻花名</title><description>记录与分享</description><link>https://acg-n.cn/</link><language>zh_CN</language><item><title>自建服务器</title><link>https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/</link><guid isPermaLink="true">https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid><description>AstralGame 游戏联机工具从零上手：自建服务器篇</description><pubDate>Thu, 27 Aug 2026 20:03:00 GMT</pubDate><content:encoded>&lt;hr /&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;p&gt;:::tip
+您可以从目录跳转到相应的章节学习以节省您的时间，将您的宝贵的时间用于游戏中
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#windows%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;windows端部署服务器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#linux%E7%AB%AF%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;linux端一键部署服务器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#linux%E7%AB%AF%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;linux端手动部署服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2&gt;📌 前提条件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;有一台电脑&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有一台带有ipv4公网的服务器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;Windows端部署服务器&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://easytier.cn/guide/download.html#latest&quot;&gt;进入Easytier下载页面&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;根据自身网络情况，配置&lt;strong&gt;GitHub加速&lt;/strong&gt;，&lt;strong&gt;根据操作系统筛选&lt;/strong&gt;选择&lt;strong&gt;Windows&lt;/strong&gt;，&lt;strong&gt;根据硬件架构筛选&lt;/strong&gt;选择&lt;strong&gt;x86_64&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+图示为&lt;strong&gt;64位操作系统&lt;/strong&gt;，如果你是&lt;strong&gt;32位操作系统&lt;/strong&gt;，请在&lt;strong&gt;根据硬件架构筛选&lt;/strong&gt;中，选择&lt;strong&gt;x86&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-20.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;两种不同的Easytier服务端部署方式（按需选择一种即可）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#easytier-cli%E6%A8%A1%E5%BC%8F&quot;&gt;Easytier-cli模式&lt;/a&gt;（命令行界面适合不做任何修改开箱即用）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#easytier-gui%E6%A8%A1%E5%BC%8F&quot;&gt;Easytier-cli模式&lt;/a&gt;（拥有图形化界面，适合自定义配置）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-21.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Easytier-cli模式&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;下载&lt;strong&gt;命令行程序CLI&lt;/strong&gt;，点击下方的&lt;strong&gt;zip&lt;/strong&gt;开始下载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;解压后&lt;/strong&gt;进入文件夹运行&lt;strong&gt;Easytier-core.exe&lt;/strong&gt;即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-22.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后你便可以&lt;a href=&quot;#%E4%BD%BF%E7%94%A8Astral%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%82%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;使用astral连接你的自定义服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+请注意检查&lt;strong&gt;服务器控制台中&lt;/strong&gt;的&lt;strong&gt;防火墙&lt;/strong&gt;是否放行&lt;strong&gt;tcp和udp协议&lt;/strong&gt;的&lt;strong&gt;11010端口&lt;/strong&gt;，你可以使用&lt;a href=&quot;https://www.itdog.cn/tcping/&quot;&gt;tcping&lt;/a&gt;,输入&lt;strong&gt;ip:11010&lt;/strong&gt;来检查端口是否开放
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以自行访问&lt;a href=&quot;https://easytier.cn&quot;&gt;easytier官网&lt;/a&gt;来查看更多有关配置的信息
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;Easytier-gui模式&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;下载&lt;strong&gt;图形界面程序GUI&lt;/strong&gt;，点击下方的&lt;strong&gt;exe&lt;/strong&gt;开始下载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;随后双击安装，打开&lt;strong&gt;Easytier-GUI&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+如果页面为英文，点击左下角切换为中文
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-23.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后点击&lt;strong&gt;右上角创建新网络&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-24.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后划到最下面点击&lt;strong&gt;运行网络&lt;/strong&gt;即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-28.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后你便可以&lt;a href=&quot;#%E4%BD%BF%E7%94%A8Astral%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%82%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;使用astral连接你的自定义服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+请注意检查&lt;strong&gt;服务器控制台中&lt;/strong&gt;的&lt;strong&gt;防火墙&lt;/strong&gt;是否放行&lt;strong&gt;tcp和udp协议&lt;/strong&gt;的&lt;strong&gt;11010端口&lt;/strong&gt;，你可以使用&lt;a href=&quot;https://www.itdog.cn/tcping/&quot;&gt;tcping&lt;/a&gt;,输入&lt;strong&gt;ip:11010&lt;/strong&gt;来检查端口是否开放
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以自行访问&lt;a href=&quot;https://easytier.cn&quot;&gt;easytier官网&lt;/a&gt;来查看更多有关配置的信息
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;linux端一键部署服务器&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📋 &lt;strong&gt;示例环境：&lt;/strong&gt; Debian12.5（x86_64架构）（其他Linux操作系统类似）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;🔑 使用ssh工具连接到服务器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📋 &lt;strong&gt;示例环境：&lt;/strong&gt; ssh工具为：&lt;a href=&quot;https://www.hostbuf.com/t/988.html&quot;&gt;FinalShell&lt;/a&gt;（其他ssh工具类似）（⚠️下载可能需要科学上网）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;所有服务器信息请以服务器提供商提供的信息为准&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入&lt;strong&gt;FinalShell&lt;/strong&gt;，点击左上角&lt;strong&gt;文件夹&lt;/strong&gt;，随后按照图片标记顺序操作&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-1.png&quot; alt=&quot;进入ssh工具&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在弹出的窗口中，&lt;strong&gt;名称&lt;/strong&gt;填写服务器的名称，主要用于在&lt;strong&gt;FinalShell&lt;/strong&gt;中区分别的服务器，&lt;strong&gt;主机&lt;/strong&gt;处填写&lt;strong&gt;服务器提供商&lt;/strong&gt;给你的服务器ip地址，&lt;strong&gt;端口&lt;/strong&gt;处填写&lt;strong&gt;服务器提供商&lt;/strong&gt;给你的ssh端口，&lt;strong&gt;用户名&lt;/strong&gt;处填写&lt;strong&gt;服务器提供商&lt;/strong&gt;给你的用户名，&lt;strong&gt;密码&lt;/strong&gt;处填写&lt;strong&gt;服务器提供商&lt;/strong&gt;给你的密码，随后点击下方&lt;strong&gt;确定&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+一般ssh用户名默认为&lt;strong&gt;root&lt;/strong&gt;,端口默认为&lt;strong&gt;22&lt;/strong&gt;,&lt;strong&gt;但服务器提供商可能会为了安全进行更改，请以网站面板显示的信息为主&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-2.png&quot; alt=&quot;ssh连接&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在弹出的窗口中，双击你刚刚创建的服务器（比如我这里创建的服务器名称为&lt;strong&gt;枣庄&lt;/strong&gt;，请无视马赛克部分）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-3.png&quot; alt=&quot;ssh连接&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后你将会进入ssh页面（下图中的ip地址已被打码，请无视）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-4.png&quot; alt=&quot;ssh连接&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;界面可能会有点不一样，因为所使用的Linux系统不同&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✅ &lt;strong&gt;服务器连接完成！&lt;/strong&gt; 恭喜你成功连接到你的服务器了，现在可以进行下一步了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;⚙️ 安装ET服务端&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;使用该命令更新软件源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;如果该命令无法更新请自行查找更新软件源命令&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apt update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-5.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;检查是否已安装&lt;strong&gt;unzip&lt;/strong&gt;，在&lt;strong&gt;FinalShell&lt;/strong&gt;中的窗口中输入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;unzip -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-8.png&quot; alt=&quot;安装unzip&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果显示如&lt;strong&gt;上图&lt;/strong&gt;的信息，则使用该命令安装&lt;strong&gt;unzip&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+如果该命令无法安装请自行查找安装指令
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apt install unzip
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;h4&gt;关于乌班图（Ubuntu）系统，如果不是请跳到第4步&lt;/h4&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;如果你使用的是乌班图（Ubuntu）系统，那么安装unzip时将会弹出此窗口，请不要慌张，点击键盘左上角的&lt;/strong&gt;ESC&lt;strong&gt;键退出即可&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-6.png&quot; alt=&quot;重启内核&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最后来到这，请继续下一步操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-7.png&quot; alt=&quot;重启内核&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;检查unzip是否安装成功，如下图所示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;unzip -v 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-9.png&quot; alt=&quot;安装unzip&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装EasyTier&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;一键安装命令&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget -O /tmp/easytier.sh &quot;https://raw.githubusercontent.com/EasyTier/EasyTier/main/script/install.sh&quot; &amp;amp;&amp;amp; bash /tmp/easytier.sh install --gh-proxy https://ghfast.top/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::important
+如果提示如下报错
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-10.png&quot; alt=&quot;安装unzip&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;请使用该命令安装依赖&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;apt install curl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;随后可能会弹出确认，按&lt;strong&gt;Y&lt;/strong&gt;后回车即可，安装完成后请&lt;strong&gt;再次&lt;/strong&gt;使用一键命令安装easytier&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-11.png&quot; alt=&quot;安装unzip&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;如果已经尝试多次该命令但仍然无法安装请跳转到&lt;/strong&gt;&lt;a href=&quot;#linux%E7%AB%AF%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;手动部署教程&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;easytier最终安装效果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-12.png&quot; alt=&quot;安装ET&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用该命令启动EasyTier，注意启动后不会有任何提示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;systemctl start easytier@default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✅ &lt;strong&gt;EasyTier安装完成！&lt;/strong&gt; 恭喜您成功安装EasyTier了，现在可以进行下一步了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;进入默认EasyTier配置文件目录&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;在&lt;strong&gt;FinalShell&lt;/strong&gt;中点击下方的&lt;strong&gt;opt&lt;/strong&gt;，随后进入&lt;strong&gt;easytier&lt;/strong&gt;根目录&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-13.png&quot; alt=&quot;回退&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后点击&lt;strong&gt;config&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-14.png&quot; alt=&quot;进入目录&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;双击&lt;strong&gt;Default.conf&lt;/strong&gt;文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-15.png&quot; alt=&quot;配置&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;最终打开效果&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-16.png&quot; alt=&quot;最终&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✅ &lt;strong&gt;打开EasyTier配置文件！&lt;/strong&gt; 恭喜您成功打开EasyTier配置文件了，现在可以进行下一步了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;修改EasyTier配置文件&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;复制以下配置&lt;/strong&gt;，回到刚刚打开的配置文件，使用键盘左下角的&lt;strong&gt;CTRL+A&lt;/strong&gt;全选旧的配置（你也可以在打开的文件内使用鼠标右键再点击全选），再把新的配置&lt;strong&gt;粘贴&lt;/strong&gt;进去&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;hostname = &quot;&quot; #更改想要的服务器名称,留空将随机生成，注意astral-game不会显示服务器名字
+dhcp = true
+listeners = [
+    &quot;tcp://0.0.0.0:11010&quot;,
+    &quot;udp://0.0.0.0:11010&quot;,
+]
+rpc_portal = &quot;127.0.0.1:15888&quot;
+
+[network_identity]
+network_name = &quot;&quot;
+network_secret = &quot;&quot;
+
+[flags]
+enable_kcp_proxy = true
+enable_quic_proxy = true
+latency_first = true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;随后点击上方的&lt;strong&gt;文件&lt;/strong&gt;并点击&lt;strong&gt;保存&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-17.png&quot; alt=&quot;配置&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;您在打开或者保存配置的时候，会闪过这个窗口，请不用理会&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-18.png&quot; alt=&quot;配置&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+如果你使用的是别的ssh工具，可能需要下载的自己电脑上更改后再上传回服务器替换，具体请自己百度
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;输入该指令重启EasyTier服务，注意重启后不会有任何提示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;systemctl restart easytier@default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-19.png&quot; alt=&quot;重启&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+您每次改动easytier的配置文件，改完后均需重启一次easytier（另外请记得&lt;strong&gt;保存&lt;/strong&gt;你修改的文件）
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+如果你买的是大厂的服务器，需要前往防火墙控制台页面放行端口，你需要放行端口&lt;strong&gt;11010&lt;/strong&gt;，协议为&lt;strong&gt;UDP&lt;/strong&gt;和&lt;strong&gt;TCP&lt;/strong&gt;，很抱歉因为我是借的服务器所以无法进行图文演示
+:::&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;✅ &lt;strong&gt;完成EasyTier的文件配置！&lt;/strong&gt; 恭喜您已完成EasyTier的文件配置了，现在可以进行下一步了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h3&gt;使用Astral连接到您的服务器&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;来到astral-game主页，点击左侧的&lt;strong&gt;服务器&lt;/strong&gt;，随后点击右下角的&lt;strong&gt;加号&lt;/strong&gt;来添加服务器（名称随意，主要用于在AS中区分其他服务器）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+复制以下格式，&lt;strong&gt;IP修改为你的服务器ip&lt;/strong&gt;，端口如果你没有在配置文件中修改，则默认为&lt;strong&gt;11010&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tcp://IP:11010
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;udp://IP:11010
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC4.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;添加服务器后，记得在右侧&lt;strong&gt;打开&lt;/strong&gt;以启用服务器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG1.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后您便可以像公益服务器一样正常使用您的服务器了&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+如果您不希望把服务器给陌生人用，那么请不要随意分享您的服务器地址，并告知您的朋友不要随意分享
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+如果您需要更安全的服务器配置，你可以在配置文件中修该端口为10000-60000之间（&lt;a href=&quot;#%E4%BF%AE%E6%94%B9et%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%A3&quot;&gt;教程&lt;/a&gt;）
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;linux端手动部署服务器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;📋 &lt;strong&gt;示例环境：&lt;/strong&gt; Debian12.5（x86_64架构）（其他Linux操作系统类似）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;下载easytier的linux包（在QQ群文件），&lt;strong&gt;随后将该文件移动到自己电脑桌面方便后续使用&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+图示文件可能与群文件中的&lt;strong&gt;版本不同&lt;/strong&gt;，请选择无视（因为群文件会更新）
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-25.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-26.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-27.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用以下命令创建文件夹&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;需按顺序从上到下分步执行&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;mkdir easytier
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;点击&lt;strong&gt;右边&lt;/strong&gt;的刷新，随后进入&lt;strong&gt;easytier文件夹&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-29.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将刚刚下载的easytier压缩包拖入该目录&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-30.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;最终状态&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-31.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在上方窗口输入该命令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;cd easytier &amp;amp;&amp;amp; unzip easytier-linux-x86_64-v2.6.4.zip &amp;amp;&amp;amp; cd easytier-linux-x86_64 &amp;amp;&amp;amp; ./easytier-cli service install -c /easytier/easytier-linux-x86_64/config/default.conf &amp;amp;&amp;amp; ./easytier-cli service start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;随后，您可以&lt;a href=&quot;#%E4%BD%BF%E7%94%A8Astral%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%82%A8%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;使用Astral连接到您的服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+如果您不希望把服务器给陌生人用，那么请不要随意分享您的服务器地址，并告知您的朋友不要随意分享
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+如果您需要更安全的服务器配置，你可以在配置文件中修该端口为10000-60000之间（&lt;a href=&quot;#%E4%BF%AE%E6%94%B9et%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%8F%A3&quot;&gt;教程&lt;/a&gt;）
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;修改ET服务端口&lt;/h3&gt;
+&lt;p&gt;:::important
+该教程仅为linux端，Windows端请看&lt;a href=&quot;https://easytier.cn&quot;&gt;easytier官网&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;来到&lt;strong&gt;FinalShell&lt;/strong&gt;，并ssh连接上你的服务器，进入&lt;strong&gt;easytier根目录&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+如果你使用的是&lt;strong&gt;一键安装命令&lt;/strong&gt;，则在&lt;strong&gt;opt/easytier目录&lt;/strong&gt;下；如果你使用的是&lt;strong&gt;手动部署&lt;/strong&gt;，则在&lt;strong&gt;easytier目录&lt;/strong&gt;下。&lt;strong&gt;以下图示为手动部署的图片&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2-32.png&quot; alt=&quot;退出&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;修改&lt;strong&gt;listeners&lt;/strong&gt;中的配置，将&lt;strong&gt;11010端口&lt;/strong&gt;改为&lt;strong&gt;10000-60000&lt;/strong&gt;之间的任意端口&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;注意修改后的端口不能被其他服务占用，否则会导致easytier无法正常启动&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;listeners = [
+    &quot;tcp://0.0.0.0:11010&quot;,
+    &quot;udp://0.0.0.0:11010&quot;,
+]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::important
+改完配置文件后请点击左上角&lt;strong&gt;文件&lt;/strong&gt;，随后选择&lt;strong&gt;保存&lt;/strong&gt;，&lt;strong&gt;FinalShell&lt;/strong&gt;将会自动上传替换配置文件
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;随后使用该命令重启easytier即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;注意linux端的手动部署和一键部署的easytier重启命令不同&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;h4&gt;手动部署&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;cd / &amp;amp;&amp;amp; cd easytier/easytier-linux-x86_64 &amp;amp;&amp;amp; ./easytier-cli service stop &amp;amp;&amp;amp; ./easytier-cli service start
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;一键部署&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;systemctl restart easytier@default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;🌟 Thanks for Reading&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;文章作者：&lt;/strong&gt; &lt;code&gt;xiaowuliao&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;网站作者：&lt;/strong&gt; &lt;code&gt;kevin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;感谢你的阅读与支持！&lt;/p&gt;
+&lt;p&gt;希望这篇 Astral 联机教程能够对你有所帮助。&lt;br /&gt;
+如果你在使用过程中遇到问题，欢迎反馈与交流。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢阅读 · 祝你联机愉快！&lt;/strong&gt; 🎮&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Made with ❤️ by xiaowuliao · Website by kevin&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;便携跳转&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/&quot;&gt;AstralGame使用教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/&quot;&gt;如何检查服务器在线状态和为什么联机很卡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;MC联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;Raft联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&quot;&gt;自建服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+</content:encoded></item><item><title>AstralGame 使用教程</title><link>https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link><guid isPermaLink="true">https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid><description>AstralGame 游戏联机工具从零上手</description><pubDate>Wed, 26 Aug 2026 20:03:00 GMT</pubDate><content:encoded>&lt;p&gt;:::warning
+如果你安装了&lt;strong&gt;radmin&lt;/strong&gt;，&lt;strong&gt;请提前退出该软件&lt;/strong&gt;，该软件可能会&lt;strong&gt;影响astral-game的正常使用&lt;/strong&gt;，如果你不知如何正确退出，请看&lt;a href=&quot;#%E6%80%8E%E4%B9%88%E6%AD%A3%E7%A1%AE%E9%80%80%E5%87%BAradmin&quot;&gt;这里&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+astral的代码完全开源，但因为没给杀毒软件交保护费（也没有大哥罩着），所以安装前为了避免杀毒软件误杀astral，请将&lt;strong&gt;astral安装包和根目录&lt;/strong&gt;放入杀毒软件白名单中
+:::&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;p&gt;:::tip
+您可以从目录跳转到相应的章节学习以节省您的时间，将您的宝贵的时间用于游戏中
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%94%B5%E8%84%91%E4%BD%BF%E7%94%A8astral%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E5%85%A5%E6%88%BF%E9%97%B4&quot;&gt;电脑使用astral创建和加入房间&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%89%8B%E6%9C%BA%E4%BD%BF%E7%94%A8astral%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E5%85%A5%E6%88%BF%E9%97%B4&quot;&gt;手机使用astral创建和加入房间&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;电脑使用astral创建和加入房间&lt;/h3&gt;
+&lt;h4&gt;房主步骤&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;来到astral-game主页，点击左侧的&lt;strong&gt;服务器&lt;/strong&gt;，随后点击右下角的&lt;strong&gt;加号&lt;/strong&gt;来添加服务器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC4.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+关于服务器在哪里找可以进&lt;a href=&quot;https://qm.qq.com/q/DbxQAsjpce&quot;&gt;QQ群&lt;/a&gt;中看群公告或者进入&lt;a href=&quot;https://pd.qq.com/s/90vkmvwar&quot;&gt;频道&lt;/a&gt;查找
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+关于如何判断服务器是否可用看&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1&quot;&gt;这里&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;添加服务器后，记得在右侧&lt;strong&gt;打开&lt;/strong&gt;以启用服务器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG1.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;点击右下角&lt;strong&gt;创建&lt;/strong&gt;，在弹出的窗口中点击&lt;strong&gt;你需要联机的游戏&lt;/strong&gt;，随后点击&lt;strong&gt;创建并连接&lt;/strong&gt;即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG2.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分享右侧的短码给你的好友即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC6.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以在astral-game左下角点击头像，编辑头像和名称，这样可以在astral的房间页面中&lt;strong&gt;更好的区分自己和他人&lt;/strong&gt;，另外如果&lt;strong&gt;已经创建或加入了房间&lt;/strong&gt;需要&lt;strong&gt;重新创建或加入&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;h4&gt;房员步骤&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;在astral-game主页面点击右下角&lt;strong&gt;加入&lt;/strong&gt;，输入房主发来的短码即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC7.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以在astral-game&lt;strong&gt;左下角&lt;/strong&gt;点击&lt;strong&gt;头像&lt;/strong&gt;，&lt;strong&gt;编辑头像和名称&lt;/strong&gt;，这样可以在astral的房间页面中&lt;strong&gt;更好的区分自己和他人&lt;/strong&gt;，另外如果&lt;strong&gt;已经创建或加入了房间&lt;/strong&gt;需要&lt;strong&gt;重新创建或加入&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;h3&gt;手机使用astral创建和加入房间&lt;/h3&gt;
+&lt;h4&gt;房主步骤&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;来到astral-game主页，点击下方的&lt;strong&gt;服务器&lt;/strong&gt;，随后点击中间的&lt;strong&gt;添加服务器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG3.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+关于服务器在哪里找可以进&lt;a href=&quot;https://qm.qq.com/q/DbxQAsjpce&quot;&gt;QQ群&lt;/a&gt;中看群公告或者进入&lt;a href=&quot;https://pd.qq.com/s/90vkmvwar&quot;&gt;频道&lt;/a&gt;查找
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+关于如何判断服务器是否可用看&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1&quot;&gt;这里&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;添加服务器后，记得在右边&lt;strong&gt;勾选&lt;/strong&gt;以启用服务器&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG4.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;点击右下角&lt;strong&gt;创建&lt;/strong&gt;，在弹出的窗口中点击&lt;strong&gt;你需要联机的游戏&lt;/strong&gt;，随后点击创建并连接即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG5.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;分享右侧的短码给你的好友即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG6.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以在astral-game的&lt;strong&gt;右上角&lt;/strong&gt;点击&lt;strong&gt;头像&lt;/strong&gt;，&lt;strong&gt;编辑头像和名称&lt;/strong&gt;，这样可以在astral的房间页面中&lt;strong&gt;更好的区分自己和他人&lt;/strong&gt;，另外如果&lt;strong&gt;已经创建或加入了房间&lt;/strong&gt;需要&lt;strong&gt;重新创建和加入&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;h4&gt;房员步骤&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;在astral-game主页面点击右下角&lt;strong&gt;加入&lt;/strong&gt;，输入房主发来的短码即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG7.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::tip
+你可以在astral-game的右上角点击头像，编辑头像和名称，这样可以在astral的房间页面中&lt;strong&gt;更好的区分自己和他人&lt;/strong&gt;，另外如果&lt;strong&gt;已经创建或加入了房间&lt;/strong&gt;需要&lt;strong&gt;重新创建和加入&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;h3&gt;怎么正确退出radmin&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;点击电脑桌面&lt;strong&gt;右下角&lt;/strong&gt;的&lt;strong&gt;小箭头&lt;/strong&gt;，找到&lt;strong&gt;radmin的图标&lt;/strong&gt;，&lt;strong&gt;右键图标&lt;/strong&gt;选择&lt;strong&gt;退出&lt;/strong&gt;即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/ASG8.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;#%E7%9B%AE%E5%BD%95&quot;&gt;返回教程开头&lt;/a&gt;&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;🌟 Thanks for Reading&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;文章作者：&lt;/strong&gt; &lt;code&gt;xiaowuliao&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;网站作者：&lt;/strong&gt; &lt;code&gt;kevin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;感谢你的阅读与支持！&lt;/p&gt;
+&lt;p&gt;希望这篇 Astral 联机教程能够对你有所帮助。&lt;br /&gt;
+如果你在使用过程中遇到问题，欢迎反馈与交流。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢阅读 · 祝你联机愉快！&lt;/strong&gt; 🎮&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Made with ❤️ by xiaowuliao · Website by kevin&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;便携跳转&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/&quot;&gt;AstralGame使用教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/&quot;&gt;如何检查服务器在线状态和为什么联机很卡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;MC联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;Raft联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&quot;&gt;自建服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+</content:encoded></item><item><title>MC联机教程</title><link>https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/</link><guid isPermaLink="true">https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/</guid><description>AstralGame 游戏联机工具从零上手：MC联机从入门到入土，带你品鉴MC的特色联机风味</description><pubDate>Wed, 26 Aug 2026 20:03:00 GMT</pubDate><content:encoded>&lt;h2&gt;前情提要&lt;/h2&gt;
+&lt;p&gt;:::important
+该教程为astral-game的MC联机教程，包含手机和电脑端的MC联机模组安装，包含服务器的选择和卡顿原因以及解决的办法，带你品鉴MC的特色联机风味
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;&lt;a href=&quot;https://next.astral.fan/game/&quot;&gt;下载并安装 AstralGame&lt;/a&gt;&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;p&gt;:::tip
+您可以从目录跳转到相应的章节学习以节省您的时间，将您的宝贵的时间用于游戏中
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85mc%E8%81%94%E6%9C%BA%E6%A8%A1%E7%BB%84&quot;&gt;电脑安装MC联机模组&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85mc%E8%81%94%E6%9C%BA%E6%A8%A1%E7%BB%84&quot;&gt;手机安装MC联机模组&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;电脑安装MC联机模组&lt;/h3&gt;
+&lt;p&gt;:::important
+离线玩家房主必装，正版玩家可以跳过这个章节到&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B&quot;&gt;这里&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确定你的联机的&lt;strong&gt;游戏版本&lt;/strong&gt;和&lt;strong&gt;加载器&lt;/strong&gt;，这里以&lt;strong&gt;你好，新征程&lt;/strong&gt;整合包为例，点击&lt;strong&gt;版本设置&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC1.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入后便可以看到&lt;strong&gt;游戏版本&lt;/strong&gt;和&lt;strong&gt;加载器&lt;/strong&gt;，比如我这里&lt;strong&gt;游戏版本&lt;/strong&gt;为&lt;strong&gt;1.21.1&lt;/strong&gt;，&lt;strong&gt;加载器&lt;/strong&gt;为&lt;strong&gt;neoforge&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC2.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确定&lt;strong&gt;游戏版本&lt;/strong&gt;和&lt;strong&gt;加载器&lt;/strong&gt;后，点击左上角返回到PCL主页面，点击&lt;strong&gt;下载&lt;/strong&gt;，&lt;strong&gt;Mod&lt;/strong&gt;，搜索&lt;strong&gt;更高级联机设置&lt;/strong&gt;，随后点击模组进入模组下载页面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;更高级联机设置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC3.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;找到&lt;strong&gt;刚刚确定&lt;/strong&gt;的&lt;strong&gt;游戏版本&lt;/strong&gt;和对应的模组&lt;strong&gt;加载器&lt;/strong&gt;，选择下载即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::tip
+注意在&lt;strong&gt;游戏版本&lt;/strong&gt;中&lt;strong&gt;1.21.1&lt;/strong&gt;和&lt;strong&gt;1.21.10&lt;/strong&gt;是&lt;strong&gt;两个不同的游戏版本&lt;/strong&gt;（以此类推），在&lt;strong&gt;加载器&lt;/strong&gt;中&lt;strong&gt;neoforge&lt;/strong&gt;和&lt;strong&gt;forge&lt;/strong&gt;是&lt;strong&gt;两个不同的加载器&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+联机模组仅需房主安装，房员无需安装！
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;启动游戏，打开&lt;strong&gt;对局域网开放&lt;/strong&gt;，并配置&lt;strong&gt;如下红框&lt;/strong&gt;的设置即可，其他配置按&lt;strong&gt;需要调整&lt;/strong&gt;，&lt;strong&gt;请遵循不懂别乱动原则&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;不同的游戏版本可能会导致该模组的配置页面有些许不同&lt;/strong&gt;，您只需要配置&lt;strong&gt;正版验证：禁用+修复UUID&lt;/strong&gt;即可
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC9.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;随后&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/#%E7%94%B5%E8%84%91%E4%BD%BF%E7%94%A8astral%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E5%85%A5%E6%88%BF%E9%97%B4&quot;&gt;配置astral-game&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果没有在多人游戏显示房间，那么配置完成后房员手动输入房主的&lt;strong&gt;ip:端口&lt;/strong&gt;即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+这里的&lt;strong&gt;冒号为英文&lt;/strong&gt;（:），请&lt;strong&gt;不要使用中文冒号&lt;/strong&gt;（：）
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+25565端口可以直接使用房主的ip连接，无需添加冒号和端口号
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;手机安装MC联机模组&lt;/h3&gt;
+&lt;p&gt;:::important
+在教程开始之前，&lt;strong&gt;我不建议使用手机作为房主&lt;/strong&gt;，因为Java版在手机上以转译为主，性能释放受限
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;确定你联机的&lt;strong&gt;游戏版本&lt;/strong&gt;和模组&lt;strong&gt;加载器&lt;/strong&gt;&lt;s&gt;（你都用手机玩JAVA版MC了我相信你会看的）&lt;/s&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这里以&lt;strong&gt;FCL启动器&lt;/strong&gt;为例（其他启动器请自行摸索或百度），在&lt;strong&gt;FCL启动器&lt;/strong&gt;的左侧点击&lt;strong&gt;下载&lt;/strong&gt;，&lt;strong&gt;模组&lt;/strong&gt;，搜索&lt;strong&gt;更高级联机设置&lt;/strong&gt;，找到对应的&lt;strong&gt;游戏版本&lt;/strong&gt;和&lt;strong&gt;加载器&lt;/strong&gt;安装即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;更高级联机设置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::tip
+注意在&lt;strong&gt;游戏版本&lt;/strong&gt;中&lt;strong&gt;1.21.1&lt;/strong&gt;和&lt;strong&gt;1.21.10&lt;/strong&gt;是&lt;strong&gt;两个不同的游戏版本&lt;/strong&gt;（以此类推），在&lt;strong&gt;加载器&lt;/strong&gt;中&lt;strong&gt;neoforge&lt;/strong&gt;和&lt;strong&gt;forge&lt;/strong&gt;是&lt;strong&gt;两个不同的加载器&lt;/strong&gt;！
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+联机模组仅需房主安装，房员无需安装！
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC8.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;启动游戏，打开&lt;strong&gt;对局域网开放&lt;/strong&gt;，并配置&lt;strong&gt;如下红框&lt;/strong&gt;的设置即可，其他配置按&lt;strong&gt;需要调整&lt;/strong&gt;，&lt;strong&gt;请遵循不懂别乱动原则&lt;/strong&gt;（&lt;strong&gt;图片借的电脑端的，反正差不多&lt;/strong&gt;）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+不同的游戏版本可能会导致配置页面有些许不同，您只需要配置&lt;strong&gt;正版验证：禁用+修复UUID&lt;/strong&gt;即可
+:::&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/MC9.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;随后&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/#%E6%89%8B%E6%9C%BA%E4%BD%BF%E7%94%A8astral%E5%88%9B%E5%BB%BA%E5%92%8C%E5%8A%A0%E5%85%A5%E6%88%BF%E9%97%B4&quot;&gt;配置astral-game&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果没有在多人游戏显示房间，那么配置完成后房员手动输入房主的&lt;strong&gt;ip:端口&lt;/strong&gt;即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+这里的&lt;strong&gt;冒号为英文&lt;/strong&gt;（:），请&lt;strong&gt;不要使用中文冒号&lt;/strong&gt;（：）
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+25565端口可以直接使用房主的ip连接，无需添加冒号和端口号
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;🌟 Thanks for Reading&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;文章作者：&lt;/strong&gt; &lt;code&gt;xiaowuliao&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;网站作者：&lt;/strong&gt; &lt;code&gt;kevin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;感谢你的阅读与支持！&lt;/p&gt;
+&lt;p&gt;希望这篇 Astral 联机教程能够对你有所帮助。&lt;br /&gt;
+如果你在使用过程中遇到问题，欢迎反馈与交流。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢阅读 · 祝你联机愉快！&lt;/strong&gt; 🎮&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Made with ❤️ by xiaowuliao · Website by kevin&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;便携跳转&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/&quot;&gt;AstralGame使用教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/&quot;&gt;如何检查服务器在线状态和为什么联机很卡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;MC联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;Raft联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&quot;&gt;自建服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+</content:encoded></item><item><title>如何检查服务器在线状态和为什么联机很卡</title><link>https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/</link><guid isPermaLink="true">https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/</guid><description>AstralGame 游戏联机工具从零上手：服务器的状态和卡顿原因以及解决办法</description><pubDate>Wed, 26 Aug 2026 20:03:00 GMT</pubDate><content:encoded>&lt;hr /&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;p&gt;:::tip
+您可以从目录跳转到相应的章节学习以节省您的时间，将您的宝贵的时间用于游戏中
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8A%B6%E6%80%81&quot;&gt;如何检查服务器状态&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BD%86%E6%98%AF%E8%BF%98%E5%BE%88%E5%8D%A1&quot;&gt;为什么服务器可以使用但是还很卡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E8%BF%90%E8%90%A5%E5%95%86qos&quot;&gt;运营商qos&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h3&gt;如何检查服务器状态&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;h4&gt;在astral-game中，有四种服务器状态，分别是：&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;🟢绿色：服务器在线（&lt;strong&gt;但不一定能用&lt;/strong&gt;）&lt;/li&gt;
+&lt;li&gt;🔵蓝色：服务器使用中（&lt;strong&gt;但不一定能用&lt;/strong&gt;）&lt;/li&gt;
+&lt;li&gt;🔴红色：服务器离线&lt;/li&gt;
+&lt;li&gt;⚪灰色：服务器状态未知（&lt;strong&gt;在右侧启用服务器以检查状态&lt;/strong&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;:::important
+astral的服务器状态检测&lt;strong&gt;仅供参考&lt;/strong&gt;，不可以作为&lt;strong&gt;可使用&lt;/strong&gt;或者&lt;strong&gt;能流畅联机&lt;/strong&gt;的依据，&lt;strong&gt;请点击创建房间查看是否有ip来决定服务器是否可用&lt;/strong&gt;，关于是否能流畅联机看&lt;a href=&quot;#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BD%86%E6%98%AF%E8%BF%98%E5%BE%88%E5%8D%A1&quot;&gt;这里&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;你可以使用icmp协议（也就是ping命令）来检查服务器是否在线&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;按住&lt;strong&gt;windows键&lt;/strong&gt;（也叫&lt;strong&gt;win键&lt;/strong&gt;）然后按&lt;strong&gt;R键&lt;/strong&gt;在&lt;strong&gt;左下角弹出的窗口中&lt;/strong&gt;输入&lt;strong&gt;cmd&lt;/strong&gt;，会弹出来一个黑色的命令提示框&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;cmd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;随后输入&lt;strong&gt;ping 服务器ip&lt;/strong&gt;（注意ping后面有一个空格，并且无需添加后缀端口），来检测服务器是否在线，&lt;strong&gt;注意以下为示例&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;ping www.baidu.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::important
+最后服务器是否可用取决于在astral房间中是否能拿到ip地址
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;为什么服务器可以使用但是还很卡&lt;/h3&gt;
+&lt;p&gt;:::important
+网络卡顿的原因多种多样，你需要使用ping命令来检查自身网络是否正常
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E7%94%B5%E8%84%91%E7%AB%AF%E6%A3%80%E6%B5%8B&quot;&gt;电脑端检测&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%89%8B%E6%9C%BA%E7%AB%AF%E6%A3%80%E6%B5%8B&quot;&gt;手机端检查&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h4&gt;电脑端检测&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;按住&lt;strong&gt;windows键&lt;/strong&gt;（也叫&lt;strong&gt;win键&lt;/strong&gt;）然后按&lt;strong&gt;R键&lt;/strong&gt;在&lt;strong&gt;左下角弹出的窗口中&lt;/strong&gt;输入&lt;strong&gt;cmd&lt;/strong&gt;，会弹出来一个黑色的命令提示框&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;cmd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;随后在任意一个命令提示框中输入以下命令,&lt;strong&gt;正常的延迟应该在30ms以内&lt;/strong&gt;，如果高于这个延迟请优化自身网络环境以提升联机体验&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;ping www.baidu.com -t
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;:::tip
+你可以通过使用有线网络，或者来到距离路由器，基站等距离近遮挡少的地方来改善网络环境
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+使用&lt;strong&gt;热点&lt;/strong&gt;的网络容易受到&lt;strong&gt;基站接入人数&lt;/strong&gt;和&lt;a href=&quot;https://zhuanlan.zhihu.com/p/1978134485263472065&quot;&gt;qci等级&lt;/a&gt;以及&lt;strong&gt;外围环境&lt;/strong&gt;（遮挡）的影响，&lt;strong&gt;不建议使用这种不稳定的网络进行游戏联机&lt;/strong&gt;；使用&lt;strong&gt;广电网络等三大运营商（电信，联通，移动）之外的网络&lt;/strong&gt;或者&lt;strong&gt;校园网&lt;/strong&gt;的用户在&lt;strong&gt;晚高峰&lt;/strong&gt;（即晚上7点到11点）可能会出现严重的&lt;a href=&quot;#%E8%BF%90%E8%90%A5%E5%95%86qos&quot;&gt;运营商qos&lt;/a&gt;，&lt;strong&gt;建议换运营商或避免使用校园网&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;手机端检测&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;下载&lt;a href=&quot;https://wis.ruijie.com.cn/wmg/static/homepager/index.htm&quot;&gt;WiFi魔盒&lt;/a&gt;或者支持ping功能的软件，这里以&lt;strong&gt;WiFi魔盒&lt;/strong&gt;为例，点击上方的&lt;strong&gt;魔盒&lt;/strong&gt;，然后点击右下角的&lt;strong&gt;ping&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/LJ1.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在打开的页面中点击&lt;strong&gt;百度&lt;/strong&gt;，然后点击&lt;strong&gt;IPv4 Ping&lt;/strong&gt;开始测试，&lt;strong&gt;正常的延迟应该在50ms以内&lt;/strong&gt;，如果高于这个延迟请优化自身网络环境以提升联机体验&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/images/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/LJ2.png&quot; alt=&quot;图片&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+使用&lt;strong&gt;移动数据&lt;/strong&gt;的网络容易受到&lt;strong&gt;基站接入人数&lt;/strong&gt;和&lt;a href=&quot;https://zhuanlan.zhihu.com/p/1978134485263472065&quot;&gt;qci等级&lt;/a&gt;以及&lt;strong&gt;外围环境&lt;/strong&gt;（遮挡）的影响，&lt;strong&gt;不建议使用这种不稳定的网络进行游戏联机&lt;/strong&gt;；使用&lt;strong&gt;广电网络等三大运营商（电信，联通，移动）之外的网络&lt;/strong&gt;或者&lt;strong&gt;校园网&lt;/strong&gt;的用户在&lt;strong&gt;晚高峰&lt;/strong&gt;（即晚上7点到11点）可能会出现严重的&lt;a href=&quot;#%E8%BF%90%E8%90%A5%E5%95%86qos&quot;&gt;运营商qos&lt;/a&gt;，&lt;strong&gt;建议换运营商或避免使用校园网&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+使用&lt;a href=&quot;https://www.itdog.cn/tcping/&quot;&gt;itdog网站&lt;/a&gt;进行tcping，在&lt;strong&gt;晚高峰&lt;/strong&gt;（即晚上7点到11点）使用&lt;strong&gt;持续测试&lt;/strong&gt;模式在一百个发包中只有不到5个丢包&lt;strong&gt;则视为稳定服务器&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h3&gt;运营商qos&lt;/h3&gt;
+&lt;p&gt;:::important
+运营商qos是影响联机的致命原因，造成这样的最主要的原因是&lt;a href=&quot;https://zhuanlan.zhihu.com/p/708190780&quot;&gt;运营商省间结算&lt;/a&gt;，其次是&lt;a href=&quot;https://zhuanlan.zhihu.com/p/10213902019&quot;&gt;PCDN&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h4&gt;解决方法&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;如果你处于&lt;strong&gt;直连模式&lt;/strong&gt;，出现&lt;strong&gt;延迟高&lt;/strong&gt;，或者有&lt;strong&gt;丢包&lt;/strong&gt;，你可以在&lt;strong&gt;设置&lt;/strong&gt;中往下滑，找到&lt;strong&gt;禁用p2p&lt;/strong&gt;功能并&lt;strong&gt;打开&lt;/strong&gt;，这样流量将会&lt;strong&gt;通过服务器中转&lt;/strong&gt;，以&lt;strong&gt;减轻运营商qos&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::important
+&lt;strong&gt;该功能仅卡顿的房员开启即可，并且非常考验服务器的稳定性（既要用的人少又要宽带大）&lt;/strong&gt;
+:::&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果你已经处于&lt;strong&gt;中转模式&lt;/strong&gt;，出现&lt;strong&gt;延迟高&lt;/strong&gt;，或者有&lt;strong&gt;丢包&lt;/strong&gt;，请在服务器页面中&lt;strong&gt;更换服务器&lt;/strong&gt;，因为你可能选择了&lt;strong&gt;不可中转&lt;/strong&gt;的服务器，或者&lt;strong&gt;服务器使用人数过多&lt;/strong&gt;导致卡顿&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::tip
+如果你更换了多个服务器但还是仍然卡顿，你可以尝试&lt;a href=&quot;https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&quot;&gt;自建服务器&lt;/a&gt;
+:::&lt;/p&gt;
+&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;🌟 Thanks for Reading&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;文章作者：&lt;/strong&gt; &lt;code&gt;xiaowuliao&lt;/code&gt;&lt;br /&gt;
+&lt;strong&gt;网站作者：&lt;/strong&gt; &lt;code&gt;kevin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;感谢你的阅读与支持！&lt;/p&gt;
+&lt;p&gt;希望这篇 Astral 联机教程能够对你有所帮助。&lt;br /&gt;
+如果你在使用过程中遇到问题，欢迎反馈与交流。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;感谢阅读 · 祝你联机愉快！&lt;/strong&gt; 🎮&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;Made with ❤️ by xiaowuliao · Website by kevin&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2&gt;便携跳转&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/&quot;&gt;AstralGame使用教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E5%A6%82%E4%BD%95%E6%A3%80%E6%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%A8%E7%BA%BF%E7%8A%B6%E6%80%81%E5%92%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%81%94%E6%9C%BA%E5%BE%88%E5%8D%A1/&quot;&gt;如何检查服务器在线状态和为什么联机很卡&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/MC%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;MC联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/&quot;&gt;Raft联机教程&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://acg-n.cn/posts/%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/&quot;&gt;自建服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+</content:encoded></item><item><title>Raft 联机教程</title><link>https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/</link><guid isPermaLink="true">https://acg-n.cn/posts/Raft%E8%81%94%E6%9C%BA%E6%95%99%E7%A8%8B/</guid><description>用 Astral 自研 AstralRaftNet.dll 给新版 Raft 做局域网联机：自动注入、启用 Astral 局域网、LAN 发现加入。</description><pubDate>Fri, 14 Aug 2026 14:19:00 GMT</pubDate><content:encoded>&lt;p&gt;新版 Raft 走 PlayFab P2P，没法直接用虚拟 IP 联机。Astral 为此写了适配插件 &lt;strong&gt;AstralRaftNet.dll&lt;/strong&gt;：把对战改成 TCP &lt;code&gt;IP:端口&lt;/code&gt;，进 &lt;strong&gt;Raft&lt;/strong&gt; 房间后会自动注入到 &lt;code&gt;Raft.exe&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;软件操作见 &lt;a href=&quot;/posts/AstralGame%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/&quot;&gt;AstralGame 使用教程&lt;/a&gt;。下载：&lt;a href=&quot;https://next.astral.fan/game/&quot;&gt;AstralGame&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;视频演示：&lt;/p&gt;
+&lt;p&gt;::bilibili{bvid=&quot;BV1cjgw6iENY&quot;}&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1cjgw6iENY/&quot;&gt;B 站打开&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;:::important
+房主和加入者必须用 &lt;strong&gt;不同 Steam 账号&lt;/strong&gt;。
+:::&lt;/p&gt;
+&lt;h2&gt;一、Astral 里开 Raft 房间&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;打开 AstralGame，左侧进入 &lt;strong&gt;联机&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;房主&lt;/strong&gt;点 &lt;strong&gt;创建&lt;/strong&gt;，游戏选 &lt;strong&gt;Raft&lt;/strong&gt;（不要选「其他」，否则不会注入 DLL）&lt;/li&gt;
+&lt;li&gt;把短码 / 分享链接发给好友&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;成员&lt;/strong&gt;在 &lt;strong&gt;联机 → 加入&lt;/strong&gt; 里粘贴短码&lt;/li&gt;
+&lt;li&gt;等所有人显示已连接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;:::tip
+房主建议先加一台可用服务器。成员一般只需加入短码。
+:::&lt;/p&gt;
+&lt;h2&gt;二、启动游戏，等自动注入&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;连接成功后再开 &lt;code&gt;Raft.exe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;等几秒，Astral 会检测进程并注入 &lt;code&gt;AstralRaftNet.dll&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;游戏首页右上角出现 &lt;strong&gt;Astral已注入&lt;/strong&gt; 即成功&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;没出现徽章时：确认房间类型是 Raft、防火墙没拦、过几秒再看。备用面板按 &lt;strong&gt;F7&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2&gt;三、房主：开世界&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;新世界&lt;/strong&gt; 或 &lt;strong&gt;载入世界&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;勾选 &lt;strong&gt;启用Astral局域网&lt;/strong&gt;（Steam 离线也能建房）&lt;/li&gt;
+&lt;li&gt;联机权限不要选「不允许」&lt;/li&gt;
+&lt;li&gt;进入世界即可&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;插件会在 TCP &lt;strong&gt;6488&lt;/strong&gt; 听连接，并用 UDP &lt;strong&gt;6489&lt;/strong&gt; 做局域网发现。&lt;/p&gt;
+&lt;h2&gt;四、成员：加入世界&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;点 &lt;strong&gt;加入世界&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;会发现加入世界的UI不同 说明成功了&lt;/li&gt;
+&lt;li&gt;列表是 &lt;strong&gt;lan发现&lt;/strong&gt;，点刷新&lt;/li&gt;
+&lt;li&gt;选中房主房间再加入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;第一次加入会等场景加载完再向房主要世界，避免 Connecting 超时被踢回主页（简单说就是如果第一次加入失败不要紧张正常 第二次就成功了）。&lt;/p&gt;
+&lt;p&gt;:::note
+列表刷不出来时，用 &lt;strong&gt;F7&lt;/strong&gt; 打开备用 IP 面板，填房主在 Astral 里显示的 &lt;strong&gt;虚拟 IP&lt;/strong&gt;（端口默认 6488），不要填本机回环地址。
+:::&lt;/p&gt;
+&lt;h2&gt;常见问题&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;现象&lt;/th&gt;
+&lt;th&gt;处理&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;没有「Astral已注入」&lt;/td&gt;
+&lt;td&gt;房间必须选 Raft；先连 Astral 再开游戏&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;加入列表是空的&lt;/td&gt;
+&lt;td&gt;房主是否勾了启用 Astral 局域网；点刷新；&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;提示不能加入自己&lt;/td&gt;
+&lt;td&gt;换另一个 Steam 账号 / 另一台电脑，不要填 &lt;code&gt;127.0.0.1&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;当前窗口已经是房主&lt;/td&gt;
+&lt;td&gt;加入请用另一个 Raft 客户端&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;进世界超时踢回主页&lt;/td&gt;
+&lt;td&gt;等注入完成后再加；第一次加载世界会稍慢，属正常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content:encoded></item><item><title>MD语法</title><link>https://acg-n.cn/posts/MD%E8%AF%AD%E6%B3%95/</link><guid isPermaLink="true">https://acg-n.cn/posts/MD%E8%AF%AD%E6%B3%95/</guid><description>本博客支持的 Markdown 写法速查：基础语法、提示框、卡片组件、数学公式等。</description><pubDate>Thu, 27 Feb 2025 21:00:03 GMT</pubDate><content:encoded>&lt;h2&gt;Frontmatter&lt;/h2&gt;
+&lt;p&gt;每篇文章开头需要 YAML 头信息：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: 文章标题
+published: 2025-02-27T21:00:03.481Z
+updated: 2025-03-01T12:00:00.000Z   # 可选
+description: 列表页摘要，不写则自动截取正文
+image: ./cover.webp                  # 封面：相对路径 / 站点路径 / 完整 URL
+tags: [教程, MD]
+category: 教程
+draft: false                         # true 时生产环境不展示
+lang: zh_CN                          # 可选，默认跟随站点语言
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;新建文章可用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pnpm new-post 文件名
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;基础 Markdown&lt;/h2&gt;
+&lt;h3&gt;标题&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;# 一级标题
+## 二级标题
+### 三级标题
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;强调与行内&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;**加粗** *斜体* ~~删除线~~ `行内代码`
+[链接文字](https://acg-n.cn)
+![图片说明](./image.png)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;列表&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;- 无序一项
+- 无序二项
+
+1. 有序一项
+2. 有序二项
+
+- [ ] 待办
+- [x] 已完成
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;引用与分隔&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; 这是引用文字
+
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;代码块&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;```js
+console.log(&apos;hello&apos;)
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;表格&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;| 名称 | 说明 |
+|------|------|
+| Astro | 静态站点框架 |
+| Markdown | 文章书写格式 |
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;提示框（Admonition）&lt;/h2&gt;
+&lt;p&gt;支持两种写法。&lt;/p&gt;
+&lt;h3&gt;指令写法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;:::note[自定义标题]
+普通说明
+:::
+
+:::tip
+提示信息
+:::
+
+:::important
+重要信息
+:::
+
+:::warning
+警告信息
+:::
+
+:::caution
+危险 / 谨慎操作
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;GitHub 风格写法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; [!NOTE]
+&amp;gt; 说明
+
+&amp;gt; [!TIP]
+&amp;gt; 提示，例如 [acg-n.cn](https://acg-n.cn)
+
+&amp;gt; [!IMPORTANT]
+&amp;gt; 重要
+
+&amp;gt; [!WARNING]
+&amp;gt; 警告
+
+&amp;gt; [!CAUTION]
+&amp;gt; 危险
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;:::note[自定义标题]
+这是 note 提示框。
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+这是 tip 提示框。
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+这是 important 提示框。
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+这是 warning 提示框。
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+这是 caution 提示框。
+:::&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!TIP]
+GitHub 风格 TIP，可内嵌 &lt;a href=&quot;https://acg-n.cn&quot;&gt;链接&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;GitHub 卡片&lt;/h2&gt;
+&lt;p&gt;叶子指令，只填仓库 &lt;code&gt;owner/repo&lt;/code&gt;，会请求 GitHub API 展示简介、Star 等：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::github{repo=&quot;ldoubil/ldoubil&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;::github{repo=&quot;ldoubil/ldoubil&quot;}&lt;/p&gt;
+&lt;h2&gt;下载卡片（夸克网盘等）&lt;/h2&gt;
+&lt;p&gt;容器指令：&lt;code&gt;[]&lt;/code&gt; 里写大标题，正文每行一个 Markdown 链接——文字是行标题，括号里是下载 URL（夸克、蓝奏、直链均可）。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::download[夸克网盘资源]
+- [Windows 安装包](https://pan.quark.cn/s/xxxx)
+- [Mac 安装包](https://pan.quark.cn/s/yyyy)
+- [使用说明 PDF](https://pan.quark.cn/s/zzzz)
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;:::download[夸克网盘资源]&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://pan.quark.cn/s/xxxx&quot;&gt;Windows 安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pan.quark.cn/s/yyyy&quot;&gt;Mac 安装包&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://pan.quark.cn/s/zzzz&quot;&gt;使用说明 PDF&lt;/a&gt;
+:::&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bilibili 视频卡&lt;/h2&gt;
+&lt;p&gt;叶子指令，填 BV 号即可嵌入播放器；可选 &lt;code&gt;p&lt;/code&gt; 指定分 P：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::bilibili{bvid=&quot;BV1GJ411x7h7&quot;}
+::bilibili{bvid=&quot;BV1GJ411x7h7&quot; p=&quot;1&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;::bilibili{bvid=&quot;BV1GJ411x7h7&quot;}&lt;/p&gt;
+&lt;h2&gt;外链预览卡&lt;/h2&gt;
+&lt;p&gt;叶子指令，手动填写标题/描述（静态站不做 OG 抓取）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::link{url=&quot;https://acg-n.cn&quot; title=&quot;未闻花名&quot; desc=&quot;个人博客&quot;}
+::link{url=&quot;https://astro.build&quot; title=&quot;Astro&quot; desc=&quot;Web framework for content-driven websites&quot; image=&quot;https://astro.build/og/astro.jpg&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;::link{url=&quot;https://acg-n.cn&quot; title=&quot;未闻花名&quot; desc=&quot;个人博客&quot;}&lt;/p&gt;
+&lt;h2&gt;相册 / 多图卡&lt;/h2&gt;
+&lt;p&gt;容器指令：大标题 + 多张 Markdown 图片，点击可走站内灯箱：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::gallery[示例相册]
+![示例图 A](https://t.alcy.cc/pc)
+![示例图 B](https://t.alcy.cc/acg)
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;p&gt;:::gallery[示例相册]
+&lt;img src=&quot;https://t.alcy.cc/pc&quot; alt=&quot;示例图 A&quot; /&gt;
+&lt;img src=&quot;https://t.alcy.cc/acg&quot; alt=&quot;示例图 B&quot; /&gt;
+:::&lt;/p&gt;
+&lt;h2&gt;数学公式（KaTeX）&lt;/h2&gt;
+&lt;p&gt;行内：&lt;code&gt;$E = mc^2$&lt;/code&gt; → $E = mc^2$&lt;/p&gt;
+&lt;p&gt;块级：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$$
+\int_0^1 x^2 \, dx = \frac{1}{3}
+$$
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;$$
+\int_0^1 x^2 , dx = \frac{1}{3}
+$$&lt;/p&gt;
+&lt;h2&gt;图片&lt;/h2&gt;
+&lt;p&gt;封面写在 frontmatter 的 &lt;code&gt;image&lt;/code&gt;；正文图片：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;![说明文字](./相对路径.png)
+![说明文字](/public下的路径.png)
+![说明文字](https://example.com/a.png)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;本地相对路径会走 Astro 图片优化；外链直接加载。加载中会显示骨架动画。&lt;/p&gt;
+&lt;h2&gt;常用约定&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;文章文件名即 URL slug，例如 &lt;code&gt;MD语法.md&lt;/code&gt; → &lt;code&gt;/posts/MD语法/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;draft: true&lt;/code&gt; 只在本地开发可见，正式构建会隐藏&lt;/li&gt;
+&lt;li&gt;自定义卡片、提示框都属于 &lt;strong&gt;指令语法&lt;/strong&gt;，注意 &lt;code&gt;::&lt;/code&gt; / &lt;code&gt;:::&lt;/code&gt; 与结尾 &lt;code&gt;:::&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;单行叶子指令：&lt;code&gt;::github&lt;/code&gt; / &lt;code&gt;::bilibili&lt;/code&gt; / &lt;code&gt;::link&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;多行容器指令：&lt;code&gt;:::download&lt;/code&gt; / &lt;code&gt;:::gallery&lt;/code&gt; / &lt;code&gt;:::note&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content:encoded></item></channel></rss>

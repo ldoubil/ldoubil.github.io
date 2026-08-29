@@ -1,0 +1,1 @@
+import{t as e}from"./Swup.modern.Bi31Rlp_.js";export{e as default};
